@@ -1,8 +1,5 @@
 package Challanges.ChallangeObjects;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 public class Fabric {
 
 	public Fabric() {}
@@ -26,21 +23,6 @@ public class Fabric {
 		this.width = Integer.parseInt(splitString[3]);
 		
 		this.height = Integer.parseInt(splitString[4]);
-		
-	}
-	
-	public String runRegex(String s, String pattern) {
-		String foundString = "";
-
-		Pattern p = Pattern.compile(pattern);
-		Matcher m = p.matcher(s);
-		
-		if(m.find()) {
-			int groupLength = m.group().length();
-			foundString = m.group().subSequence(1, (groupLength > 2 ? m.group().length()-1 : m.group().length())).toString();
-		}
-		
-		return foundString.trim();
 	}
 	
 	public int getId() {
