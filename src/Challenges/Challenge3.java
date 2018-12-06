@@ -20,18 +20,7 @@ public class Challenge3 extends Challenge {
 	
 	@Override
 	void partOne() {
-		int[][] fabricPatch = new int [MAX_FABRIC_SIZE][MAX_FABRIC_SIZE];
-		
-		for(String s : this.input) {
-			Fabric fabric = new Fabric();
-			fabric.createFabric(s);
-			
-			for(int i = fabric.getTopStart(); i < fabric.getTopStart() + fabric.getHeight(); i++) {
-				for(int j = fabric.getLeftStart(); j < fabric.getLeftStart() + fabric.getWidth(); j++) {
-					fabricPatch[i][j]++;
-				}
-			}
-		}
+		int[][] fabricPatch = createFabricPatchArray();
 		
 		int result = 0;
 		for(int i = 0; i < MAX_FABRIC_SIZE; i++) {
@@ -42,13 +31,47 @@ public class Challenge3 extends Challenge {
 			}
 		}
 		
-		System.out.print("Total overlaps: " + result );
+		System.out.print("Total overlaps: " + result +"\n");
 	}
 	
-
 	@Override
 	void partTwo() {
-
+		int[][] fabricPatch = createFabricPatchArray();
+		
+		for(String s : this.input) {
+			Fabric fabric = new Fabric();
+			fabric.createFabric(s);
+			
+			boolean foundFabric = true;
+			topLoop: for (int i = fabric.getTopStart(); i < fabric.getTopStart() + fabric.getHeight(); i++) {
+                for (int j = fabric.getLeftStart(); j < fabric.getLeftStart() + fabric.getWidth(); j++) {
+                    if (fabricPatch[i][j] > 1) {
+                    	foundFabric = false;
+                        break topLoop;
+                    }
+                }
+			}
+			
+			if(foundFabric) {
+				System.out.println("Correct claim id is: " + fabric.getId());
+			}
+		}
+	}
+	
+	public int[][] createFabricPatchArray(){
+		int[][] fabricPatch = new int[MAX_FABRIC_SIZE][MAX_FABRIC_SIZE];
+	
+		for(String s : this.input) {
+			Fabric fabric = new Fabric();
+			fabric.createFabric(s);
+			for(int i = fabric.getTopStart(); i < fabric.getTopStart() + fabric.getHeight(); i++) {
+				for(int j = fabric.getLeftStart(); j < fabric.getLeftStart() + fabric.getWidth(); j++) {
+					fabricPatch[i][j]++;
+				}
+			}
+		}
+		
+		return fabricPatch;
 	}
 
 }
