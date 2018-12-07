@@ -2,8 +2,6 @@ package Challenges;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
-
 import Challanges.ChallangeObjects.Guard;
 
 public class Challenge4 extends Challenge {
@@ -24,7 +22,6 @@ public class Challenge4 extends Challenge {
 		Collections.sort(this.input);
 		
 		ArrayList<Guard> guards = new ArrayList<Guard>();
-		//HashMap<Integer, Guard> guards = new HashMap<Integer, Guard>();
 		int currentGuardId = 0;
 		int sleepStartTime = 0;
 		
@@ -43,12 +40,11 @@ public class Challenge4 extends Challenge {
 			}
 			if(s.contains("asleep")) {
 				sleepStartTime = minute;
-				Guard guard = getGuardById(guards, currentGuardId);
-				guard.updateHashmap(sleepStartTime);
 			}
 			else if(s.contains("wakes")) {
 				int totalSleepTime = minute - sleepStartTime;
 				Guard guard = getGuardById(guards, currentGuardId);
+				guard.updateHashmap(sleepStartTime, minute);
 				guard.setTimeSpentSleeping(guard.getTimeSpentSleeping() + totalSleepTime);
 			}
 		}
@@ -61,7 +57,6 @@ public class Challenge4 extends Challenge {
 		}
 		
 		System.out.println("guard id: " + maxGuard.getId() + " most slept minute: " + maxGuard.findMostSleptMinute());
-
 		
 		System.out.println("the answer for strategy 1 is: " + maxGuard.getId() * maxGuard.findMostSleptMinute());
 	}

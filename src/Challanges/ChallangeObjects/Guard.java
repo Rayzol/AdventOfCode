@@ -35,15 +35,18 @@ public class Guard {
 		this.minuteSleepStart = minuteSleepStart;
 	}
 
-	public void updateHashmap(int min) {
+	public void updateHashmap(int startMin, int finishMin) {
 		if(this.minuteSleepStart == null) {
 			this.minuteSleepStart = new HashMap<>();
 		}
-		if(!this.minuteSleepStart.containsKey(min)) {
-			this.minuteSleepStart.put(min, 1);
-		}
-		else {
-			this.minuteSleepStart.put(min, this.minuteSleepStart.get(min) + 1);
+		
+		for (int i = startMin; i < finishMin; i++) {
+			if(!this.minuteSleepStart.containsKey(i)) {
+				this.minuteSleepStart.put(i, 1);
+			}
+			else {
+				this.minuteSleepStart.put(i, this.minuteSleepStart.get(i) + 1);
+			}
 		}
 	}
 	
