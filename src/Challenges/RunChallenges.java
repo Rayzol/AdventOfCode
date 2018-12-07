@@ -12,8 +12,11 @@ public class RunChallenges {
 		Challenge3 c3 = new Challenge3();
 		c3.runChallenge();*/
 		
-		Challenge4 c4 = new Challenge4();
-		c4.runChallenge();
+		//Challenge4 c4 = new Challenge4();
+		//c4.runChallenge();
+		
+		Challenge5 c5 = new Challenge5();
+		c5.runChallenge();
 	}
 
 }
