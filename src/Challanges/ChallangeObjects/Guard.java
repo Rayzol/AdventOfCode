@@ -51,6 +51,11 @@ public class Guard {
 	}
 	
 	public int findMostSleptMinute() {
+		
+		if(this.minuteSleepStart == null) {
+			return 0;
+		}
+		
 		int mostSleptMinuteTime = 0;
 		int mostSleptMinute = 0;
 		
@@ -62,5 +67,13 @@ public class Guard {
 		}
 		
 		return mostSleptMinute;
+	}
+	
+	public int getMostSleptMinuteValue(int key) {
+		if(this.minuteSleepStart == null) {
+			return 0;
+		}
+		
+		return this.minuteSleepStart.get(key);
 	}
 }
